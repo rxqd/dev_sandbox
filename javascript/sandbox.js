@@ -32,7 +32,7 @@ function add1(a, b) {
   return a + b;
 }
 // Calling function add1()
-assert.(add1(5, 2), 7);
+assert(add1(5, 2), 7);
 
 const add2 = (a, b) => { return a + b };
 // Calling function add2()
