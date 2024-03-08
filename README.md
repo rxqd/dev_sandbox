@@ -14,6 +14,7 @@
 
 - [Javascript](javascript/)
 - [Python](python/)
+- [Rust](rust/)
 
 ## TODO
 

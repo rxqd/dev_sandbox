@@ -89,5 +89,33 @@ const avatarClsMan = new Avatar("Aang", "airbender", "man")
 Avatar.describe([
   avatarClsChild, avatarClsMan])
 
+// Variables
+let variable;
+variable = 0;
+variable = variable + 1;
+assert.equal(variable, 1);
+
+// const
+const constant = 0; // must initialize
+
+assert.throws(
+  () => { constant = constant + 1 },
+  {
+    name: 'TypeError',
+    message: 'Assignment to constant variable.',
+  }
+);
+
+const obj = { prop: 0 };
+
+// Allowed: changing properties of `obj`
+obj.prop = obj.prop + 1;
+assert.equal(obj.prop, 1);
+
+
+
+
+
+  
 
 console.log("success")
