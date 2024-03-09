@@ -5,8 +5,9 @@ types:
   float:
     - js
   string:
-    - python
-    - js
+    lang:
+      - python
+      - js
     formatted:
       - python
       - js
@@ -37,8 +38,9 @@ object:
   functions:
     - js
 functions:
-  - python
-  - js
+  lang:
+    - python
+    - js
   default_values:
     - python
 assert:
