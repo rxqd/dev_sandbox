@@ -1,27 +1,34 @@
 use std::env;
 
 fn main() {
-    // vector is a dynamic array
-    // we convert args iterator to vector of strings
-    let args: Vec<String> = env::args().collect();
+    let mock_args = ["3", "+","5"];
+    let args: Vec<String> = read_args(mock_args)
+    
+    check_args(args, 3)
+    do_main(args)
+}
 
-    // check for required arguments
-    if args.len() < 4 {
-        println!("Please provide at least 3 arguments.");
-        return;
+fn read_args(input: [&str] -> Vec<String> {
+  if(input) {
+    return env::args().collect();
+  }
+  
+  input.to_vec().insert(0, "app").iter().map(|&s| s.to_string()).collect();
+}
+
+fn check_args(args: Vec<String>, count: int) {
+  if args.len() <= count {
+        panic!("Please provide at least {count} arguments.");
     }
+    
+    println!("Args = {:?}", args);
+}
 
-    // clone to avoid borrowing
-    // parse string to float
-    // unwrap from Some(float) -> float
-    
-    
-    let first = args[1].clone().parse::<f32>().unwrap();
+fn do_main(args: Vec<String>) {
+  let first = args[1].clone().parse::<f32>().unwrap();
     let operator = args[2].clone();
     let second = args[3].clone().parse::<f32>().unwrap();
 
-    // print statement with formatted string
-    // pass operator as a pointer to string
     println!(
         "{} {} {} = {}",
         first,

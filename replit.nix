@@ -1,7 +1,7 @@
 { pkgs }: {
   deps = [
     pkgs.nodejs-19_x
-    pkgs.rustup
+    pkgs.rust-stable
     pkgs.python310Full
     pkgs.replitPackages.prybar-python310
     pkgs.replitPackages.stderred

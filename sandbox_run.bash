@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 if [[ "$1" == "javascript" ]]; then
   cd javascript

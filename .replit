@@ -1,4 +1,4 @@
-run = "bash ./run.sh" 
+run = "bash ./sandbox_run.bash"
 
 [languages.javascript]
 pattern = "javascript/**/*.rs"
