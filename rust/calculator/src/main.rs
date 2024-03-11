@@ -1,30 +1,31 @@
 use std::env;
 
 fn main() {
-    let mock_args = ["3", "+","5"];
-    let args: Vec<String> = read_args(mock_args)
-    
-    check_args(args, 3)
-    do_main(args)
-}
+    let mock_args = ["3", "-","5"];
+    let args: Vec<String> = read_args(Some(&mock_args));
 
-fn read_args(input: [&str] -> Vec<String> {
-  if(input) {
-    return env::args().collect();
-  }
+    check_args(&args, 3);
   
-  input.to_vec().insert(0, "app").iter().map(|&s| s.to_string()).collect();
+    do_main(&args);
 }
 
-fn check_args(args: Vec<String>, count: int) {
+fn read_args(input: Option<&[&str]>) -> Vec<String> {
+  match input {
+    Some(input) => ["app"].iter().chain(input).map(|&s| s.to_string()).collect(),
+
+    None => env::args().collect()
+   }
+}
+
+fn check_args(args: &Vec<String>, count: usize) {
   if args.len() <= count {
         panic!("Please provide at least {count} arguments.");
     }
-    
+
     println!("Args = {:?}", args);
 }
 
-fn do_main(args: Vec<String>) {
+fn do_main(args: &Vec<String>) {
   let first = args[1].clone().parse::<f32>().unwrap();
     let operator = args[2].clone();
     let second = args[3].clone().parse::<f32>().unwrap();
