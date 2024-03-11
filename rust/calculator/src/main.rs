@@ -5,15 +5,15 @@ const MOCK_ARGS: [&str; 4] = [
 "3", "+","5"];
 
 fn main() {
-    let args: Vec<String> = read_args();
+    let args: Vec<String> = read_args(3);
 
     do_main(&args);
 }
 
-fn read_args() -> Vec<String> {
+fn read_args(count: usize) -> Vec<String> {
   let args: Vec<String> = env::args().collect();
 
-  if check_args(&args, 3) {
+  if check_args(&args, count) {
     return args;
   }
   
