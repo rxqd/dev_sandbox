@@ -3,3 +3,4 @@ target
 /.replit
 /replit.nix
 /run.sh
+.bundle/

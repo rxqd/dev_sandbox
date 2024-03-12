@@ -11,8 +11,8 @@ fi
 
 ln -s "$1" current  
 
-if [[ ! -e "current/replit.toml" ]]; then
-  echo "$1/replit.toml must exist"
+if [[ ! -e "current/.replit" ]]; then
+  echo "$1/.replit must exist"
   exit 1
 fi
 
@@ -20,13 +20,21 @@ if [[ -L ".replit" ]]; then
   rm ".replit"
 fi
 
-ln -s "current/replit.toml" ".replit"
+ln -s "current/.replit" ".replit"
 
 
 if [[ -L "replit.nix" ]]; then 
   rm "replit.nix"
 fi
 
-if [[ -e "current/_replit.nix" ]]; then
-  ln -sf "current/_replit.nix" "replit.nix"
+if [[ -e "current/replit.nix" ]]; then
+  ln -s "current/replit.nix" "replit.nix"
+fi
+
+if [[ -L "run.sh" ]]; then 
+  rm "run.sh"
+fi
+
+if [[ -e "current/run.sh" ]]; then
+  ln -s "current/run.sh" "run.sh"
 fi

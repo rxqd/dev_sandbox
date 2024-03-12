@@ -11,6 +11,6 @@ requiredFiles = [".replit"]
 
 [deployment]
 build = ["sh", "-c", "go build current/src/main.go"]
-run = ["sh", "-c", "./main"]
+run = ["sh", "-c", "current/src/main"]
 ignorePorts = false
 deploymentTarget = "gce"
