@@ -27,6 +27,6 @@ if [[ -L "replit.nix" ]]; then
   rm "replit.nix"
 fi
 
-if [[ -e "current/replit.nix" ]]; then
-  ln -sf "current/replit.nix" "replit.nix"
+if [[ -e "current/_replit.nix" ]]; then
+  ln -sf "current/_replit.nix" "replit.nix"
 fi
