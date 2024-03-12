@@ -1,4 +1,5 @@
 hidden = ["target", ".cargo"]
+run = "bash run.sh"
 
 entrypoint = "current/src/main.rs"
 modules = ["rust-stable:v4-20240117-0bd73cd"]

@@ -1,5 +1,5 @@
 entrypoint = "current/src/main.go"
-run = "go run current/src"
+run = "bash run.sh"
 
 modules = ["go-1.21:v2-20231201-3b22c78"]
 
