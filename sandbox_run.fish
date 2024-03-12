@@ -1,8 +1,8 @@
 #!/bin/env fish
 
 function sandbox_run
-  if test $argv[1] = "javascript"
-    cd javascript
+  if test $argv[1] = "node"
+    cd nodejs
     node (string join " " $argv[2..])  # Adapt for optional arguments
   else if test $argv[1] = "rust"
     cd rust

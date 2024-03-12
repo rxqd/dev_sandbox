@@ -1,10 +1,10 @@
 run = "bash ./sandbox_run.bash"
 
-[languages.javascript]
-pattern = "javascript/**/*.rs"
+[languages.nodejs]
+pattern = "nodejs/**/*.js"
 
 [languages.python]
-pattern = "python/**/*.rs"
+pattern = "python/**/*.py"
 
 [languages.rust]
 pattern = "rust/**/*.rs"
