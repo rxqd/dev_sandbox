@@ -1,6 +1,6 @@
 compile = ["make", "-s", "-o", "target"]
-run = "target/main"
-entrypoint = "src/main.c"
+run = "current/target/main"
+entrypoint = "current/src/main.c"
 hidden = ["main", "main-debug", "**/*.o", "**/*.d", ".ccls-cache", "Makefile", target]
 
 [nix]

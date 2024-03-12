@@ -1,6 +1,6 @@
-run = "bundle exec ruby src/main.rb"
+run = "bundle exec ruby current/src/main.rb"
 hidden = [".bundle"]
-entrypoint = "src/main.rb"
+entrypoint = "current/src/main.rb"
 modules = ["ruby-3.2:v6-20240209-9e3a339"]
 
 [nix]

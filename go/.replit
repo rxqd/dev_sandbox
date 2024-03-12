@@ -1,5 +1,5 @@
-entrypoint = "src/main.go"
-run = "go run src"
+entrypoint = "current/src/main.go"
+run = "go run current/src"
 
 modules = ["go-1.21:v2-20231201-3b22c78"]
 
@@ -10,7 +10,7 @@ channel = "stable-23_05"
 requiredFiles = [".replit"]
 
 [deployment]
-build = ["sh", "-c", "go build src/main.go"]
+build = ["sh", "-c", "go build current/src/main.go"]
 run = ["sh", "-c", "./main"]
 ignorePorts = false
 deploymentTarget = "gce"
