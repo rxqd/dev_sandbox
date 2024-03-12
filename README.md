@@ -2,6 +2,13 @@
 
 > The idea is to check how the same thing can be implemented with different languages
 
+# Set project as current
+```
+  bash current.sh nodejs
+```
+
+It do symlink of project dir to current and symlink replit config to root folder.
+
 ## Version meaning
 
 ### 1.2.3 means:
@@ -12,7 +19,7 @@
 
 ## Available languages
 
-- [Javascript](javascript/)
+- [Nodejs](nodejs/)
 - [Python](python/)
 - [Rust](rust/)
 
