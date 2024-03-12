@@ -1,8 +1,0 @@
-{
-  "name": "my-project",
-  "module": "src/index.ts",
-  "devDependencies": {
-    "bun-types": "^1.0.1"
-  },
-  "type": "module"
-}
