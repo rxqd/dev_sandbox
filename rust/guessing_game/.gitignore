@@ -1,1 +1,20 @@
-/target
+# Cargo allow list
+
+# Ignore everything
+*
+# ...even if they are in subdirectories
+!*/
+
+# But not these files...
+!/.gitignore
+
+!*.rs
+!Cargo.toml
+!Cargo.lock
+
+!README.md
+!LICENSE
+!/docs/
+!/Makefile
+!/run.sh
+!/.replit
