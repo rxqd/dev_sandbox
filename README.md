@@ -1,6 +1,6 @@
 # Sandbox for learning and practice
 
-> The idea id to implement the same thing with different programming languages
+> The idea is to implement the same thing with different programming languages
 
 ## Dev process
 
