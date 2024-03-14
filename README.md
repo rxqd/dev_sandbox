@@ -6,13 +6,24 @@
 
 ### Local machine
 
+Create new project and run it
+
 ```bash
-$ cp -r templates/<lang> <lang>/<project>
+$ bash new_project.py <lang> <project_name>
+$ bash run.sh
+```
+
+Set project as current and run it
+
+```bash
 $ bash current.sh <lang>/<project>
 $ bash run.sh
 ```
 
+
 ### Replit
+
+Set project as current and run it
 
 ```bash
 $ bash current.sh <lang>/<project>

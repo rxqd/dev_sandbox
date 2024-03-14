@@ -1,7 +1,13 @@
 #!/bin/env bash
 
-if [[ ! -e "$1" ]]; then
-  echo "$1 does not exist"
+# Show usage if $1 is empty
+if [[ -z "$1" ]]; then
+  echo "usage $0 <project path>"
+  exit 1
+fi
+
+if [[ ! -e "$1" && ! -d "$1" ]]; then
+  echo "$1 is invalid"
   exit 1
 fi
 
