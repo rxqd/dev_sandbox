@@ -1,19 +1,51 @@
-use std::env;
+use std::io::{self, Write};
+use std::result::Result;
 
-fn main() {
-    let args_line: String = read_args();
-
-    do_main(&args_line);
+enum UserInput {
+    Exit,
+    Ok(&'a str),
+    Err(io::Error),
 }
 
-# TODO: read args line like 1+3-7+8
-# validate line with rules
-# use create persentage func %
-# ability to calculate proportion like prop 2 = x | 3 = 5
-fn read_args() -> String {
-  # infinite loop
-  # read line
-  # calculate result
-  # continue
-  # remember previous results
+fn main() -> Result<(), io::Error> {
+    println!("Enter an expression to calculate or 'q' to exit");
+    
+    loop {
+        let result = match read_line() {
+            UserInput::Exit => {
+                println!("Bye!");
+                break;
+            },
+            UserInput::Err(e) => return Err(e),
+            UserInput::Ok(input) => match do_calculation(input) {
+                Ok(result) => result,
+                Err(e) => {
+                    println!("Error: {}", e);
+                    continue;
+                }
+            },
+        };
+        println!("= {}", result);
+        io::stdout().flush()?;
+    }
+    Ok(())
+}
+
+fn read_line() -> UserInput {
+    let mut input = String::new();
+    match io::stdin().read_line(&mut input) {
+        Err(e) => UserInput::Err(e),
+        Ok(_) => match input.trim() {
+            "q" => UserInput::Exit,
+            input => UserInput::Ok(input),
+        }
+    }
+}
+
+fn do_calculation(input: &str) -> Result<f64, &str> {
+    if input.len() < 3 {
+        return Err("Invalid input");
+    }
+
+    Ok(0.0)
 }
