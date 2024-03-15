@@ -9,15 +9,15 @@ enum UserInput {
 
 fn main() -> Result<(), io::Error> {
     println!("Enter an expression to calculate or 'q' to exit");
-    
+
     loop {
         let result = match read_line() {
             UserInput::Exit => {
                 println!("Bye!");
                 break;
-            },
+            }
             UserInput::Err(e) => return Err(e),
-            UserInput::Ok(input) => match do_calculation(&input) {
+            UserInput::Ok(input) => match calculate(&input) {
                 Ok(result) => result,
                 Err(e) => {
                     println!("Error: {}", e);
@@ -31,21 +31,73 @@ fn main() -> Result<(), io::Error> {
     Ok(())
 }
 
+pub fn calculate(input: &str) -> Result<f64, String> {
+    if input.len() < 3 {
+        return Err("Invalid input".to_owned());
+    }
+
+    println!("Debug input {:#?}", input);
+
+    Ok(0.0)
+}
+
 fn read_line() -> UserInput {
     let mut input = String::new();
+
     match io::stdin().read_line(&mut input) {
         Err(e) => UserInput::Err(e),
         Ok(_) => match input.trim() {
             "q" => UserInput::Exit,
             input => UserInput::Ok(String::from(input)),
+        },
+    }
+}
+
+// TODO: https://aquarchitect.github.io/swift-algorithm-club/Shunting%20Yard/
+#[allow(dead_code)]
+fn calculate_postfix(expr: &str) -> f64 {
+    let mut stack: Vec<f64> = Vec::new();
+
+    for token in expr.split_whitespace() {
+        println!("stack contains {:?}", stack);
+        println!("token is {:?}", token);
+
+        match token.parse::<f64>() {
+            Ok(digit) => stack.push(digit),
+            Err(_) => {
+                let digit2 = stack.pop().unwrap();
+                let digit1 = stack.pop().unwrap();
+
+                match token {
+                    "+" => stack.push(digit1 + digit2),
+                    "-" => stack.push(digit1 - digit2),
+                    "*" => stack.push(digit1 * digit2),
+                    "/" => stack.push(digit1 / digit2),
+                    _ => panic!("Invalid operator {token}"),
+                }
+            }
         }
     }
+
+    stack.pop().unwrap()
 }
 
-fn do_calculation(input: &str) -> Result<f64, &str> {
-    if input.len() < 3 {
-        return Err("Invalid input");
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    #[ignore = "not implemented"]
+    fn test_add() -> Result<(), String> {
+        assert_eq!(calculate("3+5")?, 8.0);
+        assert_eq!(calculate("3 + 5")?, 8.0);
+        Ok(())
     }
 
-    Ok(0.0)
+    #[test]
+    fn test_calculate_postfix() {
+        assert_eq!(calculate_postfix("3 4 5 * +"), 23.0);
+        assert_eq!(calculate_postfix("4 4 2 * 1 5 - / +"), 2.0);
+    }
 }
+
