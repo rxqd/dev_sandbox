@@ -2,9 +2,9 @@ use std::io::{self, Write};
 use std::result::Result;
 
 enum UserInput {
-    Exit,
-    Ok(&'a str),
     Err(io::Error),
+    Ok(String),
+    Exit,
 }
 
 fn main() -> Result<(), io::Error> {
@@ -17,7 +17,7 @@ fn main() -> Result<(), io::Error> {
                 break;
             },
             UserInput::Err(e) => return Err(e),
-            UserInput::Ok(input) => match do_calculation(input) {
+            UserInput::Ok(input) => match do_calculation(&input) {
                 Ok(result) => result,
                 Err(e) => {
                     println!("Error: {}", e);
@@ -37,7 +37,7 @@ fn read_line() -> UserInput {
         Err(e) => UserInput::Err(e),
         Ok(_) => match input.trim() {
             "q" => UserInput::Exit,
-            input => UserInput::Ok(input),
+            input => UserInput::Ok(String::from(input)),
         }
     }
 }
