@@ -1,4 +1,4 @@
-require "calculator"
+require_relative "calculator"
 
 RSpec.describe "Calculator" do
   describe "#calculate" do
