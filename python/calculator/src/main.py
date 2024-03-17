@@ -1,13 +1,4 @@
 from dataclasses import dataclass
-
-if __name__ == "__main__":
-    expr1 = "4 4 2 * 1 5 - / +"
-    expr2 = "3 4 5 * +"
-    
-    assert calculate_postfix(expr1) == 2.0
-    assert calculate_postfix(expr2) == 23.0
-    
-    main
     
 @dataclass
 class UserInput:
@@ -36,21 +27,21 @@ def calculate(expr: str) -> float:
     
     return 0.0, None
     
-def read_line -> UserInput:
+def read_line() -> UserInput:
     expr = input().strip()
     
-    match expr.t:
-        case "q": UserInput(exit=True)
-        _: UserInput(value=expr)
+    match expr:
+        case "q": return UserInput(exit=True)
+        case _: return UserInput(value=expr)
         
 def calculate_postfix(expr: str) -> float:
     stack = []
     
     for token in expr.split():
-        print(f"stack contains {stack}"
+        print(f"stack contains {stack}")
         print(f"token is {token}")
         
-        if token.is_digit():
+        if token.isdigit():
             stack.append(float(token))
         else:
             digit2 = stack.pop()
@@ -63,5 +54,13 @@ def calculate_postfix(expr: str) -> float:
                 case "/": stack.append(digit1/digit2)
                 case "_": raise f"Invalid operator {token}"
 
-    stack.pop()
-    
+    return stack.pop()
+
+if __name__ == "__main__":
+    expr1 = "4 4 2 * 1 5 - / +"
+    expr2 = "3 4 5 * +"
+
+    assert calculate_postfix(expr1) == 2.0
+    assert calculate_postfix(expr2) == 23.0
+
+    main()
