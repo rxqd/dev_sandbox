@@ -18,23 +18,22 @@ fn main() -> Result<(), io::Error> {
             }
             UserInput::Err(e) => return Err(e),
             UserInput::Ok(input) => match calculate(&input) {
-                Ok(result) => result,
+                Ok(result) => {
+                    println!("= {}", result);
+                    io::stdout().flush()?;
+                    continue;           
+                },
                 Err(e) => {
                     println!("Error: {}", e);
                     continue;
                 }
             },
         };
-        println!("= {}", result);
-        io::stdout().flush()?;
     }
     Ok(())
 }
 
 pub fn calculate(input: &str) -> Result<f64, String> {
-    if input.len() < 3 {
-        return Err("Invalid input".to_owned());
-    }
 
     println!("Debug input {:#?}", input);
 
@@ -48,7 +47,7 @@ fn read_line() -> UserInput {
         Err(e) => UserInput::Err(e),
         Ok(_) => match input.trim() {
             "q" => UserInput::Exit,
-            input => UserInput::Ok(String::from(input)),
+            _ => UserInput::Ok(String::from(input)),
         },
     }
 }
