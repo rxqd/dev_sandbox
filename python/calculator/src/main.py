@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 if __name__ == "__main__":
     expr1 = "4 4 2 * 1 5 - / +"
-    expr2 = ("3 4 5 * +"), 23.0);
+    expr2 = "3 4 5 * +"
     
     assert calculate_postfix(expr1) == 2.0
     assert calculate_postfix(expr2) == 23.0
@@ -14,7 +14,7 @@ class UserInput:
     value: str = None
     exit: bool = None
 
-def main:
+def main():
     print("Enter an expression to calculate or 'q' to exit")
     
     while True:
