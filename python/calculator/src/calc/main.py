@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import Optional, Tuple
 from calc import calc_postfix
 
 
@@ -25,16 +24,6 @@ def main():
                     continue
 
                 print(f"={result}")
-
-
-def calculate(expr: str) -> Tuple[float, Optional[str]]:
-    print(f"Debug input {expr}")
-
-    if len(expr) == 0:
-        return 0.0, "Expr is blank"
-
-    return 0.0, None
-
 
 def read_line() -> UserInput:
     expr: str = input().strip()
