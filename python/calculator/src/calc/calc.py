@@ -1,7 +1,7 @@
 from typing import List
 
 
-def calculate_postfix(expr: str) -> float:
+def calc_postfix(expr: str) -> float:
     stack: List[float] = []
 
     for token in expr.split():

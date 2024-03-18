@@ -1,9 +1,9 @@
 [tool.poetry]
-name = "calculator"
-version = "0.1.0"
+name = "calc"
+version = "1.0.0"
 description = ""
 authors = ["Maksym Litvynov <1058433+rxx@users.noreply.github.com>"]
-package-mode = false
+package-mode = true
 
 [tool.poetry.dependencies]
 python = "^3.12"
