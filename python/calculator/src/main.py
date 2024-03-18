@@ -1,9 +1,10 @@
 from dataclasses import dataclass
+from typing import List
     
 @dataclass
 class UserInput:
-    value: str = None
-    exit: bool = None
+    value: str = ""
+    exit: bool = False
 
 def main():
     print("Enter an expression to calculate or 'q' to exit")
@@ -22,20 +23,20 @@ def main():
                     
                 print(f"={result}")
                 
-def calculate(expr: str) -> float:
+def calculate(expr: str) -> tuple[float, str]:
     print(f"Debug input {expr}")
     
-    return 0.0, None
+    return 0.0, ""
     
 def read_line() -> UserInput:
-    expr = input().strip()
+    expr: str = input().strip()
     
     match expr:
         case "q": return UserInput(exit=True)
         case _: return UserInput(value=expr)
         
 def calculate_postfix(expr: str) -> float:
-    stack = []
+    stack: List[float] = []
     
     for token in expr.split():
         print(f"stack contains {stack}")
@@ -51,8 +52,11 @@ def calculate_postfix(expr: str) -> float:
                 case "+": stack.append(digit1+digit2)
                 case "-": stack.append(digit1-digit2)
                 case "*": stack.append(digit1*digit2)
-                case "/": stack.append(digit1/digit2)
-                case "_": raise f"Invalid operator {token}"
+                case "/":
+                  if digit2 == 0:
+                      raise ZeroDivisionError("Digit is zero")
+                  stack.append(digit1/digit2)
+                case "_": raise ValueError(f"Invalid operator {token}")
 
     return stack.pop()
 
