@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from typing import Optional, Tuple
-from calculator import calculate_postfix
+from calc import calc_postfix
 
 
 @dataclass
