@@ -37,9 +37,13 @@ def play() -> None:
     start_player = choose(names)
     turn_order = player_order(names, start=start_player)
 
-    for name, cards in hands.items():
-        card_str = " ".join(f"{s}{r}" for (s, r) in cards)
-        print(f"{name}: {card_str}")
+    # Randomly play cards from each player's hand until empty
+    while hands[start_player]:
+        for name in turn_order:
+            card = choose(hands[name])
+            hands[name].remove(card)
+            print(f"{name}: {card[0] + card[1]:<3}  ", end="")
+        print()
 
 if __name__ == "__main__":
     play()
