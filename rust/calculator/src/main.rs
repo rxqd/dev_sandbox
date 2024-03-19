@@ -11,7 +11,7 @@ fn main() -> Result<(), io::Error> {
     println!("Enter an expression to calculate or 'q' to exit");
 
     loop {
-        let result = match read_line() {
+        match read_line() {
             UserInput::Exit => {
                 println!("Bye!");
                 break;
@@ -21,8 +21,8 @@ fn main() -> Result<(), io::Error> {
                 Ok(result) => {
                     println!("= {}", result);
                     io::stdout().flush()?;
-                    continue;           
-                },
+                    continue;
+                }
                 Err(e) => {
                     println!("Error: {}", e);
                     continue;
@@ -34,7 +34,6 @@ fn main() -> Result<(), io::Error> {
 }
 
 pub fn calculate(input: &str) -> Result<f64, String> {
-
     println!("Debug input {:#?}", input);
 
     Ok(0.0)
@@ -47,7 +46,7 @@ fn read_line() -> UserInput {
         Err(e) => UserInput::Err(e),
         Ok(_) => match input.trim() {
             "q" => UserInput::Exit,
-            _ => UserInput::Ok(String::from(input)),
+            _ => UserInput::Ok(String::from(input.trim())),
         },
     }
 }
@@ -99,4 +98,3 @@ mod tests {
         assert_eq!(calculate_postfix("4 4 2 * 1 5 - / +"), 2.0);
     }
 }
-
