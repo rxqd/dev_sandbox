@@ -1,10 +1,15 @@
 use std::{env, process, fs, io::{self, Write}};
 use std::path::Path;
 
-pub struct Project {
-    pub name: &str,
-    pub path: &str,
-    pub lang: &str
+pub struct Project<'a> {
+    pub name: &'a str,
+    pub path: &'a str,
+    pub lang: &'a str
+}
+
+pub struct Config<'a> {
+  pub path: &'a str
+  pub current_project: Project<'a>
 }
 
 pub fn list_projects() {
