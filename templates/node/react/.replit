@@ -30,6 +30,6 @@ pattern = "**/{*.js,*.jsx,*.ts,*.tsx}"
 start = "typescript-language-server --stdio"
 
 [[ports]]
-localPort = 5173
+localPort = 8910
 externalPort = 80
 
