@@ -3,8 +3,12 @@ modules = ["nodejs-20:v8-20230920-bd784b9"]
 hidden = [".redwood",".vscode", "package-lock.json"]
 
 [nix]
-channel = "stable-23_05"
+channel = "stable-23_11"
 
 [[ports]]
 localPort = 8910
 externalPort = 80
+
+[[ports]]
+localPort = 8911
+externalPort = 3000
