@@ -1,18 +1,13 @@
 
 fn main() {
-    println!(hello());
-}
-
-pub fn hello() -> 'static &str {
-  "Hello rust"
+    println!("Choose current project:");
+    list_projects();
+    let target = choose_project();
+    verify_target(&target);
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    #[test]
-    fn test_hello() {
-        assert_eq!(hello(), "Hello rust");
-    }
 }

@@ -1,7 +1,7 @@
 use std::{env, process, fs, io::{self, Write}};
 use std::path::Path;
 
-fn list_projects() {
+pub fn list_projects() {
     let mut num = 1;
 
     for entry in fs::read_dir(".").unwrap() {
@@ -28,10 +28,7 @@ fn list_projects() {
     }
 }
 
-fn choose_project() -> String {
-    println!("Choose current project:");
-    list_projects();
-
+pub fn choose_project() -> String {
     let mut choice = String::new();
     io::stdin().read_line(&mut choice).unwrap();
 
@@ -51,25 +48,21 @@ fn choose_project() -> String {
         .unwrap()
         .to_str()
         .unwrap()
-        .to_string(); 
+        .to_string();
 
     println!("Chosen target is: {}", target);
     target
 }
 
-fn main() {
-    let target = choose_project();
-
+pub fn verify_target(target: &str) {
     // Remove trailing slash, if any
-    let target = Path::new(&target).parent().unwrap().to_str().unwrap().to_string(); 
+    let target = Path::new(&target).parent().unwrap().to_str().unwrap();
 
     // Check if selected folder exists 
     if !Path::new(&target).is_dir() {
         println!("{} is invalid", target);
         process::exit(1);
     }
-
-    // Check .replit and run.sh exist (similar logic as Bash, assuming you'd use Rust's 'fs' crate to check)
-
-    // ... Your symlinking logic (OS-specific in Rust, consider crates like 'symlink')
 }
+
+
