@@ -36,11 +36,3 @@ fi
 if [[ -e "current/replit.nix" ]]; then
   ln -s "current/replit.nix" "replit.nix"
 fi
-
-if [[ -L "run.sh" ]]; then 
-  rm "run.sh"
-fi
-
-if [[ -e "current/run.sh" ]]; then
-  ln -s "current/run.sh" "run.sh"
-fi
