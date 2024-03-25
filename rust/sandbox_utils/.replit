@@ -1,5 +1,5 @@
 hidden = ["target", ".cargo"]
-run = "bash run.sh"
+run = "bash current/run.sh"
 
 modules = ["rust-stable:v4-20240117-0bd73cd"]
 
