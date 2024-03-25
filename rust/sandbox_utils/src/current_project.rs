@@ -1,15 +1,14 @@
 use std::{env, process, fs, io::{self, Write}};
 use std::path::Path;
 
-pub struct Project<'a> {
-    pub name: &'a str,
-    pub path: &'a str,
-    pub lang: &'a str
+pub struct Project {
+    pub path: String,
+    pub name: String
 }
 
-pub struct Config<'a> {
-  pub path: &'a str
-  pub current_project: Project<'a>
+pub struct Config {
+  pub ignored_folders: Vec<String>,
+  pub current_project: Project
 }
 
 pub fn list_projects() {

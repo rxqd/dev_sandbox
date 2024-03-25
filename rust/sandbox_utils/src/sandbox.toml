@@ -1,0 +1,6 @@
+ignored_folders = [
+"current", 
+"templates",
+"sandbox_utils",
+"bin"
+]
