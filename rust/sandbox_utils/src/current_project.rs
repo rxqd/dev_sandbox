@@ -1,6 +1,12 @@
 use std::{env, process, fs, io::{self, Write}};
 use std::path::Path;
 
+pub struct Project {
+    pub name: &str,
+    pub path: &str,
+    pub lang: &str
+}
+
 pub fn list_projects() {
     let mut num = 1;
 
