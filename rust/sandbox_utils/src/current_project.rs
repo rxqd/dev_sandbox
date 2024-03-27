@@ -11,6 +11,10 @@ pub struct Config {
   pub current_project: Project
 }
 
+struct Config {
+    
+}
+
 pub fn list_projects() {
     let mut num = 1;
 
