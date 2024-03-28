@@ -1,5 +1,5 @@
 run = "bash current/run.sh"
-modules = ["nodejs-20:v8-20230920-bd784b9"]
+modules = ["nodejs-20:v29-20240315-3def760"]
 hidden = [".redwood",".vscode", "package-lock.json"]
 
 [nix]

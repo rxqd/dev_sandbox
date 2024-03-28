@@ -1,7 +1,7 @@
 hidden = ["target", ".cargo"]
 run = "bash current/run.sh"
 
-modules = ["rust-stable:v4-20240117-0bd73cd"]
+modules = ["rust-stable:v10-20240306-8675cf9"]
 
 [nix]
 channel = "stable-23_11"
