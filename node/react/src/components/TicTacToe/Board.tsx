@@ -1,38 +1,35 @@
 import "./styles.css";
 
-import { useState } from 'react';
-import Square from "./Square";
+import { useState } from "react";
+import BoardRow from "./BoardRow";
 
-export default Board({size:number = 3}) {
-  const [squares, setSquares] = useState(Array(size*size).fill(null));
-  
-  handleClick = (index: number) => {
-    const nextSquares = squares.slice();
-    nextSquares[index] = "X";
-    setSquares(nextSquares);
-  }
-  
-  renderBoard = () => {
-    const rows = []
-    
-    for(i=0; i<squares.length;i+=size) {
-        rows.push(<div className="board-row">)
-        
-        for(j=i;j<i+size;j++) {
-          rows.push(<Square key={j}
-                            value={squares[j] 
-                              onSquareClick={() => handleClick(j)}/>)
+import { type BoardProps } from "./types";
+
+export default function Board({ size = 3 }: BoardProps) {
+    const [squares, setSquares] = useState(Array(size * size).fill(null));
+
+    const handleClick = (index: number): void => {
+        const nextSquares = squares.slice();
+        nextSquares[index] = "X";
+        setSquares(nextSquares);
+    };
+
+    const renderBoard = () => {
+        const rows = [];
+
+        for (let i = 0; i < squares.length; i += size) {
+            const columns = squares.slice(i, i + size);
+            rows.push(
+                <BoardRow
+                    row={i}
+                    columns={columns}
+                    handleClick={handleClick}
+                />,
+            );
         }
-        
-        rows.push(</div>)
-      }
-      
-      return rows;
-  }
-  
-  return (
-    <>
-    {renderBoard()} 
-    </>
-  );
+
+        return rows;
+    };
+
+    return <div className="board">{renderBoard()}</div>;
 }
