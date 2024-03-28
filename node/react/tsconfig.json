@@ -1,15 +1,13 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "esnext"],
-    "allowJs": false,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
+    "module": "bundler",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
