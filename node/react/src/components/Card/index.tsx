@@ -1,10 +1,16 @@
 import "./styles.css";
 
-const Card = () => {
+type CardProps = {
+    title: string;
+    desc?: string;
+}
+
+
+const Card = ({title, desc}: CardProps) => {
   return (
       <div className="card card__dark">
-        <h2>Card</h2>
-        <p>Description</p>
+        <h1>{title}</h1>
+        <p>{desc}</p>
     </div>
   )
 }

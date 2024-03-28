@@ -1,5 +1,5 @@
 export type BoardProps = {
-    size: number,
+    size?: number,
 };
 
 export type SquareValue = "X" | "O" | null;

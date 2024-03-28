@@ -3,8 +3,7 @@ import Board from "@/components/TicTacToe/Board";
 
 const HomePage = () => {
     return <>
-        <h1>Home</h1>
-        <Card />
+        <Card title="Home"  desc="Sandbox page"/>
         <Board />
       </>
     }

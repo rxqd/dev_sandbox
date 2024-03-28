@@ -24,8 +24,8 @@
 }
 
 .board {
-    margin-top: 20px;
-    }
+    margin: 20px;
+}
 
 .game {
   display: flex;
