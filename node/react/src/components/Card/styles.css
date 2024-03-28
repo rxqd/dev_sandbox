@@ -1,0 +1,9 @@
+.card {
+    border: solid 1px #23272f;
+    padding: 0px 10px;
+}
+
+.card__dark {
+    background: #23272f;
+    color: #fff;
+}

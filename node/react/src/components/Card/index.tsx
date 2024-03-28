@@ -1,6 +1,8 @@
+import "./styles.css";
+
 const Card = () => {
   return (
-      <div className="card">
+      <div className="card card__dark">
         <h2>Card</h2>
         <p>Description</p>
     </div>
