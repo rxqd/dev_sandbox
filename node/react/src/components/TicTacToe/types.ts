@@ -1,10 +1,14 @@
 export type BoardProps = {
-    size?: number,
+    size: number;
+    xnext: boolean;
+    squares: SquareValue[];
+    onPlay: HandlePlayFunc;
 };
 
 export type SquareValue = "X" | "O" | null;
 
 export type HandleClickFunc = (key: number) => void;
+export type HandlePlayFunc =  (squares: SquareValue[]) => void
 
 export type SquareProps = {
     value: SquareValue;
