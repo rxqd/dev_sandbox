@@ -1,11 +1,10 @@
 import Card from "@/components/Card";
-import Board from "@/components/TicTacToe/Board";
+import Game from "@/components/TicTacToe/Game";
 
 const HomePage = () => {
     return <>
-        <h1>Home</h1>
-        <Card />
-        <Board />
+        <Card title="Home"  desc="Sandbox page"/>
+        <Game />
       </>
     }
 
