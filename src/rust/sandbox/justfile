@@ -1,5 +1,11 @@
-run_api:
+run_watch_api:
   cargo watch -x "run --bin api"
+
+run_api:
+  cargo run --bin api
 
 run_cli:
   cargo run --bin cli
+
+test:
+  cargo test
