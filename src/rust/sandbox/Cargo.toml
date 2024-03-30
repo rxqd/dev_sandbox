@@ -4,4 +4,10 @@ version = "0.1.0"
 authors = ["runner"]
 edition = "2021"
 
+[[bin]]
+name = "cli"
+
+[[bin]]
+name = "api"
+
 [dependencies]
