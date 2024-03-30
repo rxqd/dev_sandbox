@@ -18,5 +18,5 @@
 !/Makefile
 !/run.sh
 !/.replit
-!sandbox.toml
+!justfile
 target/
