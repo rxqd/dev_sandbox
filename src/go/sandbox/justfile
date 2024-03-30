@@ -4,8 +4,11 @@ build_api:
 build_cli:
     go build -o bin/cli_dev cmd/cli/main.go
 
-run_api:
+run_watch_api:
     air
+
+run_api:
+    go run sandbox/cmd/api
 
 run_cli:
     go run sandbox/cmd/cli
