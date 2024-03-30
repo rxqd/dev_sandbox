@@ -1,4 +1,4 @@
-run = "(cd current && bash run.sh)"
+run = "(cd current && just run)"
 modules = ["nodejs-20:v29-20240315-3def760"]
 hidden = [".config", "package-lock.json"]
 

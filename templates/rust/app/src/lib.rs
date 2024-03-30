@@ -1,9 +1,5 @@
-fn main() {
-    println!("{}", hello());
-}
-
 pub fn hello() -> String {
-    "Hello rust".to_string()
+    "Hello rust from lib".to_string()
 }
 
 #[cfg(test)]
@@ -12,6 +8,6 @@ mod tests {
 
     #[test]
     fn test_hello() {
-        assert_eq!(hello(), "Hello rust");
+        assert_eq!(hello(), "Hello rust from lib");
     }
 }
