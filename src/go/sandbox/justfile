@@ -1,0 +1,11 @@
+build_api:
+    go build -o bin/api cmd/api/main.go
+
+build_cli:
+    go build -o bin/cli cmd/cli/main.go
+
+run_server:
+    gin run -p 4200 -a 3000 sandbox/cmd/api
+
+install_gin:
+    go install github.com/codegangsta/gin@latest
