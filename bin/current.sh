@@ -18,7 +18,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 ROOT="$(dirname "$SCRIPT_DIR")"
 
 if [[ -L "$ROOT/current" ]]; then
-	rm "$ROOT/current"
+	rm -f "$ROOT/current"
 fi
 
 ln -s "$1" "$ROOT/current"
@@ -29,13 +29,13 @@ if [[ ! -e "$ROOT/current/.replit" ]]; then
 fi
 
 if [[ -L "$ROOT/.replit" ]]; then
-	rm "$ROOT/.replit"
+	rm -f "$ROOT/.replit"
 fi
 
 ln -s "$ROOT/current/.replit" "$ROOT/.replit"
 
 if [[ -L "$ROOT/replit.nix" ]]; then
-	rm "$ROOT/replit.nix"
+	rm -f "$ROOT/replit.nix"
 fi
 
 if [[ -e "$ROOT/current/replit.nix" ]]; then
