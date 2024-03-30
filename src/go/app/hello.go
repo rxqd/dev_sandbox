@@ -1,5 +1,8 @@
 package main
 
-func hello() string {
-	return "Hello from go lib"
+import "fmt"
+
+func Hello(name string) string {
+	return fmt.Sprintf("Hello, %s", name)
 }
+

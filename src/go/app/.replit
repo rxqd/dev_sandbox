@@ -1,4 +1,4 @@
-run = "(cd current && just run)"
+run = "(cd current && just test)"
 
 modules = ["go-1.21:v8-20240329-787bc7d"]
 
