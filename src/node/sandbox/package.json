@@ -2,7 +2,7 @@
   "name": "react",
   "version": "1.0.0",
   "type": "module",
-  "description": "React Sandbox Utils",
+  "description": "sandbox",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
