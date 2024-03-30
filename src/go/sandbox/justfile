@@ -4,7 +4,7 @@ build_api:
 build_cli:
     go build -o bin/cli_dev cmd/cli/main.go
 
-run_server:
+run_api:
     air
 
 run_cli:

@@ -1,5 +1,5 @@
-pub fn hello() {
-    println!("Hello rust");
+pub fn hello() -> String {
+    "Hello rust from lib".to_string()
 }
 
 // pub struct Project {

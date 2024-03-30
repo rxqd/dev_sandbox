@@ -1,7 +1,6 @@
 use sandbox::hello;
 
 fn main() {
-    hello();
-
+    println!("{}", hello());
     println!("Hello from cli");
 }
