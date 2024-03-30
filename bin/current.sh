@@ -18,7 +18,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 ROOT="$(dirname "$SCRIPT_DIR")"
 
 if [[ -L "$ROOT/current" ]]; then
-	rm current
+	rm "$ROOT/current"
 fi
 
 ln -s "$1" "$ROOT/current"
