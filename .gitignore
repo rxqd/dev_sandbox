@@ -442,4 +442,5 @@ yarn-debug.log*
 !/storage/.keep
 /public/uploads
 
+tmp/
 

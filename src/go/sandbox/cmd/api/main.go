@@ -15,6 +15,6 @@ func main() {
 
 func hello(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
-		"projects1": sandbox.ProjectsList(),
+		"projects": sandbox.ProjectsList(),
 	})
 }
