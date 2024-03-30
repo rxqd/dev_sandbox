@@ -1,3 +1,6 @@
 { pkgs }: {
-    deps = [pkgs.corepack_20];
+    deps = [
+        pkgs.just
+        pkgs.corepack_20
+    ];
 }
