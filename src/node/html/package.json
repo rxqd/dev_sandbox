@@ -1,6 +1,7 @@
 {
   "name": "my-project",
   "private": true,
+   "type": "module",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -8,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vite": "^5.0.12"
+    "vite": "^5.2.6"
   },
   "engines": {
     "node": "=20.x"
