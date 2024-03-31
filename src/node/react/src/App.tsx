@@ -1,4 +1,3 @@
-import 'modern-normalize/modern-normalize.css';
 import "@/App.css";
 import HomePage from "@/pages/HomePage";
 
