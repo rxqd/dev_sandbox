@@ -1,5 +1,3 @@
-import "./styles.css";
-
 import { useState } from "react";
 import BoardRow from "./BoardRow";
 import checkWinner from "./checkWinner";
@@ -46,8 +44,8 @@ export default function Board({ size, squares, xnext, onPlay }: BoardProps) {
     };
 
     return (
-        <div className="board">
-            <div className="status">{status}</div>
+        <div className="m-5">
+            <div className="mb-2.5">{status}</div>
         {renderBoard()}
         </div>
     );

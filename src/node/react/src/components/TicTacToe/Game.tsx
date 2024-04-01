@@ -37,11 +37,11 @@ export default function Game() {
       });
     
   return (
-    <div className="game">
-      <div className="game-board">
+    <div className="flex">
+      <div>
         <Board size={size} squares={currentSquares} xnext={xnext} onPlay={handlePlay} />
       </div>
-      <div className="game-info">
+      <div className="ml-5">
         <ol>{moves}</ol>
       </div>
     </div>
