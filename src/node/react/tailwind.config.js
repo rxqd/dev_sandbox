@@ -4,6 +4,13 @@ export default {
     "./index.html",
     "./src/**/*.{ts,tsx}",
   ],
+    theme: {
+        extend: {
+          flexGrow: {
+            2: '2'
+          }
+        }
+      },
   plugins: [require("daisyui")],
   daisyui: {
     themes: [
@@ -32,8 +39,6 @@ export default {
         },
 
       },
-      "coffee",
-      "dark"
     ],
   },
 }
