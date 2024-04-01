@@ -6,7 +6,10 @@ import { RouterProvider, createRouter } from '@tanstack/react-router';
 
 import { routeTree } from '@/routeTree.gen';
 
-const router = createRouter({ routeTree });
+const router = createRouter({
+  routeTree,
+  defaultPreload: 'intent',
+})
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -14,8 +17,8 @@ declare module '@tanstack/react-router' {
   }
 };
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-      <RouterProvider router={router} />
+    <RouterProvider router={router} />
   </React.StrictMode>
 )
