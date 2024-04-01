@@ -17,10 +17,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 # Set the ROOT variable one level up from the script's location
 ROOT="$(dirname "$SCRIPT_DIR")"
 
-if [[ -L "$ROOT/current" ]]; then
-	rm -f "$ROOT/current"
-fi
 
+rm -f "$ROOT/current"
 ln -s "$1" "$ROOT/current"
 
 if [[ ! -e "$ROOT/current/.replit" ]]; then
@@ -28,15 +26,11 @@ if [[ ! -e "$ROOT/current/.replit" ]]; then
 	exit 1
 fi
 
-if [[ -L "$ROOT/.replit" ]]; then
-	rm -f "$ROOT/.replit"
-fi
+rm -f "$ROOT/.replit"
 
 ln -s "$ROOT/current/.replit" "$ROOT/.replit"
 
-if [[ -L "$ROOT/replit.nix" ]]; then
-	rm -f "$ROOT/replit.nix"
-fi
+rm -f "$ROOT/replit.nix"
 
 if [[ -e "$ROOT/current/replit.nix" ]]; then
 	ln -s "$ROOT/current/replit.nix" "$ROOT/replit.nix"
