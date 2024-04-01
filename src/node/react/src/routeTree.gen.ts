@@ -16,9 +16,15 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
+const SudokuLazyImport = createFileRoute('/sudoku')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const SudokuLazyRoute = SudokuLazyImport.update({
+  path: '/sudoku',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/sudoku.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -33,11 +39,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/sudoku': {
+      preLoaderRoute: typeof SudokuLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexLazyRoute])
+export const routeTree = rootRoute.addChildren([
+  IndexLazyRoute,
+  SudokuLazyRoute,
+])
 
 /* prettier-ignore-end */
