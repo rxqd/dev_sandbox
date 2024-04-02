@@ -1,8 +1,0 @@
-hidden = ["target", ".cargo"]
-run = "(cd current && just run_cli)"
-
-modules = ["rust-stable:v10-20240306-8675cf9"]
-
-[nix]
-channel = "stable-23_11"
-

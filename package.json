@@ -9,10 +9,8 @@
     "apps/node/html",
     "apps/node/react"
   ],
-  "dependencies": {
-    "zx": "^7.2.3"
-  },
   "devDependencies": {
-    "@types/bun": "^1.0.12"
+    "@types/bun": "^1.0.12",
+    "zx": "^7.2.3"
   }
 }
