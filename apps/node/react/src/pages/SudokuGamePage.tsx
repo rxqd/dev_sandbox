@@ -2,8 +2,8 @@ import Board from "@/components/Sudoku/Board";
 
 export default function SudokuGamePage() {
   return (
-    <div className="container p-2 flex justify-center align-center">
-        <Board />
+    <div className="container mx-auto p-6">
+      <Board />
     </div>
   )
 }

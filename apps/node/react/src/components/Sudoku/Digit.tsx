@@ -1,11 +1,11 @@
-import {type DigitProps} from "./types";
+import { type DigitProps } from "./types";
 
-const Digit = ({value, index}: DigitProps) => {
-    return (
-        <div className="border flex-1 flex-wrap p-1 h-5 w-5" key={"d-"+index}>
-            {value}
-        </div>
-    );
+const Digit = ({ value }: DigitProps) => {
+  return (
+    <div className="flex cursor-pointer items-center justify-center border p-1 text-lg text-sky-100">
+      {value}
+    </div>
+  );
 };
 
 export default Digit;

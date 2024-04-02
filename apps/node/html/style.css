@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 .item {
-@apply gap-1 border justify-center items-center grid grid-cols-3 grid-rows-3 bg-cyan-600 p-1;
-  
-  }
+  @apply grid grid-cols-3 grid-rows-3 items-center justify-center gap-1 border bg-cyan-600 p-1;
+
+}
 
 .item__text {
-@apply border flex justify-center items-center text-sky-100 text-lg;
-  }
+  @apply flex items-center justify-center border text-lg text-sky-100;
+
+}

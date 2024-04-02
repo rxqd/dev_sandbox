@@ -1,12 +1,12 @@
-import {type SquareProps} from "./types";
+import { type SquareProps } from "./types";
 import Digit from "./Digit";
 
-const Square = ({digits, index}: SquareProps) => {
-    return (
-        <div key={"sq-"+index} className="flex flex-1 flex-wrap justify-center items-center w-1/3 h-1/3 gap-1">
-          {digits.map((digit, i) => <Digit value={digit} index={i} />)}
-        </div>
-    );
+const Square = ({ digits }: SquareProps) => {
+  return (
+    <div className="grid grid-cols-3 grid-rows-3 items-center justify-center gap-1 bg-cyan-900 ">
+      {digits.map((digit, _i) => <Digit value={digit} />)}
+    </div>
+  );
 };
 
 export default Square;
