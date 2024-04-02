@@ -3,21 +3,10 @@
 @tailwind utilities;
 
 .item {
-@apply gap-1 border justify-center items-center grid grid-cols-3 grid-rows-3 bg-cyan-600 border-sky-800;
+@apply gap-1 border justify-center items-center grid grid-cols-3 grid-rows-3 bg-cyan-600 p-1;
   
   }
 
 .item__text {
-@apply border flex justify-center items-center bg-blue-300 text-sky-950;
+@apply border flex justify-center items-center text-sky-100 text-lg;
   }
-
-
-.item_old {
-  background: #219EBC;
-  border: 1px solid #054A91;
-}
-
-.item__text_ild {
-  background: #8ECAE6;
-  color: #023047;
-}
