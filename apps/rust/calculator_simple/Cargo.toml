@@ -1,5 +1,5 @@
 [package]
-name = "calculator"
+name = "calculator_simple"
 version = "0.1.0"
 authors = ["runner"]
 edition = "2021"

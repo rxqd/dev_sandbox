@@ -1,0 +1,8 @@
+[workspace]
+members = [
+    "apps/rust/calculator",
+    "apps/rust/calculator_simple",
+    "apps/rust/guessing_game",
+    "apps/rust/minigrep",
+    "apps/rust/sandbox",
+]
