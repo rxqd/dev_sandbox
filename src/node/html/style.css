@@ -1,31 +1,23 @@
-main {
-  font-size: 1.25rem;
-  line-height: 1.25em;
-  padding: 5%;
-}
-
-.grid {
-  display: grid;
-  grid-template-rows: repeat(3, 100px);
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@apply gap-1 border justify-center items-center grid grid-cols-3 grid-rows-3 bg-cyan-600 border-sky-800;
+  
+  }
+
+.item__text {
+@apply border flex justify-center items-center bg-blue-300 text-sky-950;
+  }
+
+
+.item_old {
   background: #219EBC;
   border: 1px solid #054A91;
 }
 
-.item__text {
+.item__text_ild {
   background: #8ECAE6;
   color: #023047;
-  font-size: 2em;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
