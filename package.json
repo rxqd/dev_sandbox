@@ -10,7 +10,6 @@
     "apps/node/react"
   ],
   "devDependencies": {
-    "@types/bun": "^1.0.12",
-    "zx": "^7.2.3"
+    "@types/bun": "^1.0.12"
   }
 }
