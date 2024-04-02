@@ -5,7 +5,7 @@ const HomePage = () => {
     return <>
         <Game />
         <hr/>
-        <h2 className="text-center text-2xl mt-2">BentoGrid</h2>
+        <h2 className="mt-4 text-center text-2xl mt-2">BentoGrid</h2>
         <BentoGrid />
       </>
     }

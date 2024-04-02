@@ -1,4 +1,3 @@
-import { useState } from "react";
 import BoardRow from "./BoardRow";
 import checkWinner from "./checkWinner";
 
