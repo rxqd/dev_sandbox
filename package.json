@@ -1,0 +1,18 @@
+{
+  "name": "dev_sandbox",
+  "version": "2.0.0",
+  "description": "Dev Sandbox with different languages",
+  "scripts": {},
+  "author": "Maksym Litvynov",
+  "license": "MIT",
+  "workspaces": [
+    "apps/node/html",
+    "apps/node/react"
+  ],
+  "dependencies": {
+    "zx": "^7.2.3"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.0.12"
+  }
+}
