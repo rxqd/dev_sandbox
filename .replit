@@ -1,0 +1,22 @@
+run = "(cd current && just run)"
+modules = [
+            "nodejs-20:v29-20240315-3def760",
+            "web:v2-20230623-0b7a606",
+            "rust-stable:v10-20240306-8675cf9",
+            "python-3.11:v39-20240322-590b495", "pyright-extended:v17-20240322-590b495",
+            "go-1.21:v8-20240329-787bc7d"
+          ]
+hidden = [".config", "package-lock.json", "target", ".cargo"]
+
+[nix]
+channel = "stable-23_11"
+
+[[ports]]
+localPort = 8910
+externalPort = 80
+exposeLocalhost = true
+
+[[ports]]
+localPort = 3000
+externalPort = 80
+exposeLocalhost = true

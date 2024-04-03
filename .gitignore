@@ -1,12 +1,7 @@
 current
 target
-/.replit
-/replit.nix
-/run.sh
 .bundle/
 .cargo/
-/Gemfile*
-*.sqlite
 
 # Nodejs 
 logs
