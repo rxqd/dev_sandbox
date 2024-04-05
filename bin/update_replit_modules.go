@@ -23,9 +23,12 @@ type Module struct {
 	Hash     string
 }
 
-func main() {
-	// modulesArray := getModules()
-	// modules := parseModules(modulesArray)
+var replitConfig map[string]interface{}
+
+func main() 
+	modules := getGithubModules()
+
+    getReplitConfig()
 
 	// TODO:
 	// search module name in modules from URL,
@@ -35,8 +38,24 @@ func main() {
 
 	fmt.Println(replitModules)
 
-	for moduleName, module := range replitModules {
+    var modulesToWrite []string
+
+	for moduleName, module  := range replitModules {
+        modulesArray := modules[moduleName]
+        latestModule := modulesArray[-1]
+        if latestModule.Version > module.Version {
+            modulesToWrite = append(modulesToWrite, latestModule.FullName)
+            fmt.Println("Update", moduleName, "from", module.Version, "to", latestModule.Version)
+            } else {
+            modulesToWrite = append(modulesToWrite, module.FullName)
+            fmt.Println(moduleName, "is up to date")
+            }
 	}
+   fmt.Println(modulesToWrite)
+
+  replitConfig["modules"] = modulesToWrite
+
+  saveReplitConfig()
 }
 
 func getModulesFromURL() []byte {
@@ -62,7 +81,7 @@ func getModulesFromURL() []byte {
 	return rawModules
 }
 
-func getModules() []string {
+func getGithubModules() map[string][]Module {
 	var parsedData map[string]interface{}
 
 	err := json.Unmarshal(getModulesFromURL(), &parsedData)
@@ -76,21 +95,16 @@ func getModules() []string {
 		modules = append(modules, m)
 	}
 
-	return modules
+	return parseModules(modules)
 }
 
-func parseModules(modulesArray []interface{}) map[string][]Module {
+func parseModules(modulesArray []string) map[string][]Module {
 	const modulePattern = `^(?P<name>.*):v(?P<version>.*)-(?P<date>.*)-(?P<hash>.*)$`
 	re := regexp.MustCompile(modulePattern)
 
 	modules := make(map[string][]Module)
 
-	for _, maybeString := range modulesArray {
-		moduleString, ok := maybeString.(string) // Assert as a string
-		if !ok {
-			fmt.Println("Modules must be strings")
-			os.Exit(1)
-		}
+	for _, moduleString := range modulesArray {
 		match := re.FindStringSubmatch(moduleString)
 
 		// Extract variables from module string
@@ -127,32 +141,59 @@ func parseModules(modulesArray []interface{}) map[string][]Module {
 	return modules
 }
 
+func getReplitPath() string {
+    rootDir, err := filepath.Abs(filepath.Dir(os.Getenv("GOMOD")))
+    if err != nil {
+        log.Fatal(err)
+    }
+    return filepath.Join(rootDir, ".replit")
+}
+
+func getReplitConfig() {
+    data, err := os.ReadFile(getReplitPath())
+    if err != nil {
+        fmt.Println("Error reading TOML file:", err)
+        os.Exit(1)
+    }
+    
+    err = toml.Unmarshal(data, &replitConfig)
+    if err != nil {
+        fmt.Println("Error parsing TOML:", err)
+        os.Exit(1)
+    }
+}
+
 func readReplitModules() map[string][]Module {
-	rootDir, err := filepath.Abs(filepath.Dir(os.Getenv("GOMOD")))
-	if err != nil {
-		log.Fatal(err)
-	}
-	replitPath := filepath.Join(rootDir, ".replit")
-	data, err := os.ReadFile(replitPath)
-	if err != nil {
-		fmt.Println("Error reading TOML file:", err)
-		os.Exit(1)
-	}
-
-	var replitConfig map[string]interface{}
-	err = toml.Unmarshal(data, &replitConfig)
-	if err != nil {
-		fmt.Println("Error parsing TOML:", err)
-		os.Exit(1)
-	}
-
-	rawModules, ok := replitConfig["modules"].([]interface{})
+	rawModules, ok := replitConfig["modules"].([]string)
 	if !ok {
 		fmt.Println("Error: 'modules' is invalid key in .replit")
 		os.Exit(1)
 	}
 
-	modules := parseModules(rawModules)
+	return parseModules(rawModules)
+}
 
-	return modules
+func saveReplitConfig() {
+    data, err := toml.Marshal(replitConfig)
+    if err != nil {
+        fmt.Println("Error on marshaling config")
+        os.Exit(1)
+        }
+
+    file := getReplitPath()
+    //backup config with current time
+    backupFile := file + ".bk" + time.Now().Unix()
+    err = os.Rename(file,backupFile)
+if err != nil {
+    fmt.Println("Error to backup config")
+    os.Exit(1)
+    }
+
+    err = os.WriteFile(file, data,0644)
+
+    if err != nil {
+        fmt.Println("Error on writing config")
+        os.Exit(1)
+        }
+
 }
