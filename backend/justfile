@@ -1,0 +1,14 @@
+build:
+    go build -o bin/server .
+    
+test:
+  go test ./...
+
+watch_api:
+    air
+
+run:
+    go run .
+
+install_deps:
+    go install github.com/cosmtrek/air@v1.49.0
