@@ -16,7 +16,10 @@ run = '(cd frontend && just run)'
 channel = 'stable-23_11'
 
 [[ports]]
-exposeLocalhost = true
-externalPort = 80
+localPort = 3000
+externalPort = 3000
+
+[[ports]]
 localPort = 8910
+externalPort = 80
 
