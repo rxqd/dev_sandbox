@@ -1,6 +1,0 @@
-go 1.21.8
-
-use (
-	./apps/go/app
-	./apps/go/sandbox
-)

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euxo pipefail
+set -euo pipefail
 IFS=$'\n\t'
 
 # Show usage if $1 is empty

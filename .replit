@@ -8,22 +8,18 @@ modules = [
     'bun-1.1:v1-20240401-269b323',
     'go-1.21:v8-20240329-787bc7d',
     'nodejs-20:v32-20240401-269b323',
-    'pyright-extended:v18-20240329-787bc7d',
-    'python-3.11:v40-20240329-787bc7d',
-    'rust-stable:v11-20240329-787bc7d',
-    'web:v10-20240329-787bc7d'
+    'rust-stable:v11-20240329-787bc7d'
 ]
-run = '(cd current && just run)'
+run = '(cd frontend && just run)'
 
 [nix]
 channel = 'stable-23_11'
 
 [[ports]]
-exposeLocalhost = true
-externalPort = 80
-localPort = 8910
+localPort = 3000
+externalPort = 3000
 
 [[ports]]
-exposeLocalhost = true
+localPort = 8910
 externalPort = 80
-localPort = 3000
+
