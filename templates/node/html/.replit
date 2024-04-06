@@ -1,8 +1,0 @@
-run = "bash current/run.sh"
-entrypoint = "index.html"
-hidden = [".config"]
-modules = ["nodejs-20:v29-20240315-3def760", "web:v9-20240319-38caddd"]
-
-[nix]
-channel = "stable-23_11"
-

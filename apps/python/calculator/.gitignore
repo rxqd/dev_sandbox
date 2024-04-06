@@ -1,0 +1,25 @@
+# Allowlisting gitignore template
+
+*
+!*/
+
+!/.gitignore
+
+# Allow essential files
+!*.py
+!*.pyc # Optional: include compiled Python files if needed
+
+
+# Allow dependency management
+!pipfile
+!Pipfile.lock 
+!requirements.txt
+!pyproject.toml 
+!poetry.lock 
+
+!README.md
+!LICENSE
+!/Makefile
+!/run.sh
+!/.replit
+

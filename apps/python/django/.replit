@@ -1,0 +1,15 @@
+run = "bash run.sh"
+entrypoint = "manage.py"
+modules = ["python-3.11:v39-20240322-590b495", "pyright-extended:v17-20240322-590b495"]
+
+hidden = [".pythonlibs"]
+
+[nix]
+channel = "stable-23_11"
+
+[unitTest]
+language = "python3"
+
+[[ports]]
+localPort = 3000
+externalPort = 80
