@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -11,6 +12,7 @@ import (
 	"regexp"
 	"sort"
 	"strconv"
+	"time"
 
 	"github.com/pelletier/go-toml/v2"
 )
@@ -25,37 +27,13 @@ type Module struct {
 
 var replitConfig map[string]interface{}
 
-func main() 
+func main() {
 	modules := getGithubModules()
-
-    getReplitConfig()
-
-	// TODO:
-	// search module name in modules from URL,
-	// check latest version, update to the latest version
-
+	getReplitConfig()
 	replitModules := readReplitModules()
 
-	fmt.Println(replitModules)
-
-    var modulesToWrite []string
-
-	for moduleName, module  := range replitModules {
-        modulesArray := modules[moduleName]
-        latestModule := modulesArray[-1]
-        if latestModule.Version > module.Version {
-            modulesToWrite = append(modulesToWrite, latestModule.FullName)
-            fmt.Println("Update", moduleName, "from", module.Version, "to", latestModule.Version)
-            } else {
-            modulesToWrite = append(modulesToWrite, module.FullName)
-            fmt.Println(moduleName, "is up to date")
-            }
-	}
-   fmt.Println(modulesToWrite)
-
-  replitConfig["modules"] = modulesToWrite
-
-  saveReplitConfig()
+	syncModules(replitModules, modules)
+	saveReplitConfig()
 }
 
 func getModulesFromURL() []byte {
@@ -142,58 +120,87 @@ func parseModules(modulesArray []string) map[string][]Module {
 }
 
 func getReplitPath() string {
-    rootDir, err := filepath.Abs(filepath.Dir(os.Getenv("GOMOD")))
-    if err != nil {
-        log.Fatal(err)
-    }
-    return filepath.Join(rootDir, ".replit")
+	rootDir, err := filepath.Abs(filepath.Dir(os.Getenv("GOMOD")))
+	if err != nil {
+		log.Fatal(err)
+	}
+	return filepath.Join(rootDir, ".replit")
 }
 
 func getReplitConfig() {
-    data, err := os.ReadFile(getReplitPath())
-    if err != nil {
-        fmt.Println("Error reading TOML file:", err)
-        os.Exit(1)
-    }
-    
-    err = toml.Unmarshal(data, &replitConfig)
-    if err != nil {
-        fmt.Println("Error parsing TOML:", err)
-        os.Exit(1)
-    }
+	data, err := os.ReadFile(getReplitPath())
+	if err != nil {
+		fmt.Println("Error reading TOML file:", err)
+		os.Exit(1)
+	}
+
+	err = toml.Unmarshal(data, &replitConfig)
+	if err != nil {
+		fmt.Println("Error parsing TOML:", err)
+		os.Exit(1)
+	}
 }
 
 func readReplitModules() map[string][]Module {
-	rawModules, ok := replitConfig["modules"].([]string)
+	rawModules, ok := replitConfig["modules"].([]interface{})
 	if !ok {
 		fmt.Println("Error: 'modules' is invalid key in .replit")
 		os.Exit(1)
 	}
 
-	return parseModules(rawModules)
+	var stringModules []string
+	for _, value := range rawModules {
+		stringModules = append(stringModules, fmt.Sprint(value))
+	}
+
+	return parseModules(stringModules)
+}
+
+func syncModules(replitModules, githubModules map[string][]Module) {
+	var modulesToWrite []string
+
+	for moduleName, modules := range replitModules {
+		latestGithubModule := githubModules[moduleName][len(githubModules[moduleName])-1]
+		module := modules[0]
+
+		if latestGithubModule.Version > module.Version {
+			modulesToWrite = append(modulesToWrite, latestGithubModule.FullName)
+			fmt.Println("Update", moduleName, "from", module.Version, "to", latestGithubModule.Version)
+		} else {
+			modulesToWrite = append(modulesToWrite, module.FullName)
+			fmt.Println(moduleName, "is up to date")
+		}
+	}
+
+	replitConfig["modules"] = modulesToWrite
 }
 
 func saveReplitConfig() {
-    data, err := toml.Marshal(replitConfig)
-    if err != nil {
-        fmt.Println("Error on marshaling config")
-        os.Exit(1)
-        }
+	var tomlBuffer bytes.Buffer
+	enc := toml.NewEncoder(&tomlBuffer)
+	enc.SetArraysMultiline(true)
+	enc.SetIndentSymbol("    ")
 
-    file := getReplitPath()
-    //backup config with current time
-    backupFile := file + ".bk" + time.Now().Unix()
-    err = os.Rename(file,backupFile)
-if err != nil {
-    fmt.Println("Error to backup config")
-    os.Exit(1)
-    }
+	err := enc.Encode(replitConfig)
+	if err != nil {
+		fmt.Println("Error on marshaling config")
+		os.Exit(1)
+	}
 
-    err = os.WriteFile(file, data,0644)
+	file := getReplitPath()
+	// backup config with current time
+	backupFile := fmt.Sprintf("%s.%d.bk", file, time.Now().Unix())
+	err = os.Rename(file, backupFile)
+	if err != nil {
+		fmt.Println("Error to backup config")
+		os.Exit(1)
+	}
 
-    if err != nil {
-        fmt.Println("Error on writing config")
-        os.Exit(1)
-        }
+	err = os.WriteFile(file, tomlBuffer.Bytes(), 0644)
+	if err != nil {
+		fmt.Println("Error on writing config")
+		os.Exit(1)
+	}
 
+	fmt.Println(".replit is successfully updated")
 }
